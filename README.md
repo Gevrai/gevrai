@@ -23,3 +23,12 @@ Certified AWS Solution Architect.
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://linkedin.com/in/gevrai-jt)
 [![Itch.io](https://img.shields.io/badge/Itch-%23FF0B34.svg?style=flat&logo=Itch.io&logoColor=white)](https://gejo.itch.io/)
 [![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=flat&logo=github&logoColor=white)](https://github.com/Gevrai)
+
+
+<!-- interactive game -->
+🟡 ⚫ 🟡 ⚫ ⚫</br>
+⚫ 🟡 ⚫ 🟡 ⚫</br>
+🟡 ⚫ 🟡 ⚫ 🟡</br>
+⚫ 🟡 ⚫ 🟡 ⚫</br>
+⚫ ⚫ 🟡 ⚫ ⚫</br>
+<!-- /interactive game -->

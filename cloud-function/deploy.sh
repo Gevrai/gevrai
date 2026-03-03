@@ -58,6 +58,12 @@ echo "    Done."
 echo "==> Building TypeScript..."
 npm run build
 
+# If function already exists, get current FUNCTION_URL
+FUNCTION_URL="placeholder"
+if gcloud functions describe "$FUNCTION_NAME" --gen2 --region="$REGION" &>/dev/null; then
+  FUNCTION_URL=$(gcloud functions describe "$FUNCTION_NAME" --gen2 --region="$REGION" --format='value(serviceConfig.uri)')
+fi
+
 echo "==> Deploying to Google Cloud Functions..."
 gcloud functions deploy "$FUNCTION_NAME" \
   --gen2 \
@@ -68,20 +74,21 @@ gcloud functions deploy "$FUNCTION_NAME" \
   --entry-point=lightsOut \
   --source=. \
   --set-secrets="GITHUB_TOKEN=${SECRET_NAME}:latest" \
-  --set-env-vars="GITHUB_OWNER=${GITHUB_OWNER},GITHUB_REPO=${GITHUB_REPO},FUNCTION_URL=${FUNCTION_URL:-placeholder}" \
+  --set-env-vars="GITHUB_OWNER=${GITHUB_OWNER},GITHUB_REPO=${GITHUB_REPO},FUNCTION_URL=${FUNCTION_URL}" \
   --memory=256MB \
   --max-instances=1 \
   --concurrency=1
 
-FUNCTION_URL=$(gcloud functions describe "$FUNCTION_NAME" --gen2 --region="$REGION" --format='value(serviceConfig.uri)')
-
-# Update FUNCTION_URL env var now that we know the URL
-echo "==> Setting FUNCTION_URL=${FUNCTION_URL}..."
-gcloud functions deploy "$FUNCTION_NAME" \
-  --gen2 \
-  --region="$REGION" \
-  --update-env-vars="FUNCTION_URL=${FUNCTION_URL}" \
-  --quiet
+if [ -z "$FUNCTION_URL" ] || [ "$FUNCTION_URL" = "placeholder" ]; then
+  # Update FUNCTION_URL env var now that we know the URL
+  FUNCTION_URL=$(gcloud functions describe "$FUNCTION_NAME" --gen2 --region="$REGION" --format='value(serviceConfig.uri)')
+  echo "==> Setting FUNCTION_URL=${FUNCTION_URL}..."
+  gcloud functions deploy "$FUNCTION_NAME" \
+    --gen2 \
+    --region="$REGION" \
+    --update-env-vars="FUNCTION_URL=${FUNCTION_URL}" \
+    --quiet
+fi
 
 echo ""
 echo "==> Deployed successfully!"

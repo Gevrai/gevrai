@@ -39,15 +39,26 @@ function isWin(board: Board): boolean {
   return board.every((row) => row.every((cell) => cell === 0));
 }
 
-function generateSolvableBoard(): Board {
+const NUM_CELLS = BOARD_SIZE * BOARD_SIZE;
+
+function generateSolvableBoard(numMoves: number): Board {
   let board: Board = Array.from({ length: BOARD_SIZE }, () =>
     Array(BOARD_SIZE).fill(0)
   );
-  const numMoves = 5 + Math.floor(Math.random() * 10);
+  numMoves = Math.max(2, Math.min(numMoves, NUM_CELLS));
+  // Build a shuffled list of all cells so each is picked at most once
+  const allCells: [number, number][] = [];
+  for (let r = 0; r < BOARD_SIZE; r++) {
+    for (let c = 0; c < BOARD_SIZE; c++) {
+      allCells.push([r, c]);
+    }
+  }
+  for (let i = allCells.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [allCells[i], allCells[j]] = [allCells[j], allCells[i]];
+  }
   for (let i = 0; i < numMoves; i++) {
-    const r = Math.floor(Math.random() * BOARD_SIZE);
-    const c = Math.floor(Math.random() * BOARD_SIZE);
-    board = applyMove(board, r, c);
+    board = applyMove(board, allCells[i][0], allCells[i][1]);
   }
   // Ensure it's not already solved
   if (isWin(board)) {
@@ -72,7 +83,6 @@ function renderGameSection(
     lines.push("");
     lines.push(`### 🎉 You solved it in ${moves} moves!`);
     lines.push("");
-    lines.push(`[🆕 New Game](${functionUrl}/?action=new)`);
   } else {
     lines.push("<p>");
     for (let r = 0; r < BOARD_SIZE; r++) {
@@ -87,8 +97,12 @@ function renderGameSection(
     lines.push("</p>");
     lines.push("");
     lines.push(`**Moves: ${moves}** </br>`);
-    lines.push(`[🆕 New Game](${functionUrl}/?action=new)`);
   }
+
+  lines.push(`New game:`);
+  lines.push(`-[🟢 Easy](${functionUrl}/?action=new&num_moves=4)`);
+  lines.push(`-[🟡 Medium](${functionUrl}/?action=new&num_moves=8)`);
+  lines.push(`-[🔴 Hard](${functionUrl}/?action=new&num_moves=15)`);
 
   lines.push("<!-- /interactive game -->");
   return lines.join("\n");
@@ -99,6 +113,7 @@ async function processRequest(
   r: number | null,
   c: number | null,
   action: string | null,
+  numMoves: number,
   functionUrl: string
 ): Promise<{ content: string; sha: string } | null> {
   // Fetch current README
@@ -124,7 +139,7 @@ async function processRequest(
   let moves = movesMatch ? parseInt(movesMatch[1], 10) : 0;
 
   if (action === "new") {
-    board = generateSolvableBoard();
+    board = generateSolvableBoard(numMoves);
     moves = 0;
   } else if (r !== null && c !== null) {
     board = applyMove(board, r, c);
@@ -154,6 +169,8 @@ ff.http("lightsOut", async (req, res) => {
   const cParam = req.query.c as string | undefined;
   const rawAction = (req.query.action as string | undefined) || null;
   const action = rawAction === "new" ? "new" : null;
+  const rawNumMoves = req.query.num_moves as string | undefined;
+  const numMoves = rawNumMoves ? parseInt(rawNumMoves, 10) : 8;
 
   const r = rParam !== undefined ? parseInt(rParam, 10) : null;
   const c = cParam !== undefined ? parseInt(cParam, 10) : null;
@@ -175,7 +192,7 @@ ff.http("lightsOut", async (req, res) => {
   // Try up to 2 times (retry once on SHA conflict)
   for (let attempt = 0; attempt < 2; attempt++) {
     try {
-      const result = await processRequest(octokit, r, c, action, FUNCTION_URL);
+      const result = await processRequest(octokit, r, c, action, numMoves, FUNCTION_URL);
       if (!result) {
         res.status(500).send("Failed to parse README");
         return;

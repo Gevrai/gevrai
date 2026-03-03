@@ -42,6 +42,17 @@ export function isWin(board: Board): boolean {
 const NUM_CELLS = BOARD_SIZE * BOARD_SIZE;
 const BUG_EMOJIS = ["🐛", "🪲", "🦗", "🪳", "🐜"];
 
+export function generateSeed(): number {
+  return Math.floor(Math.random() * 0xffff);
+}
+
+function bugForCell(seed: number, r: number, c: number): string {
+  // Simple hash to deterministically pick a bug emoji per cell per game
+  let h = seed ^ (r * 7 + c * 13);
+  h = ((h >>> 0) * 2654435761) >>> 0;
+  return BUG_EMOJIS[h % BUG_EMOJIS.length];
+}
+
 export function generateSolvableBoard(numMoves: number): Board {
   let board: Board = Array.from({ length: BOARD_SIZE }, () =>
     Array(BOARD_SIZE).fill(0)
@@ -72,13 +83,15 @@ export function renderGameSection(
   board: Board,
   moves: number,
   won: boolean,
-  functionUrl: string
+  functionUrl: string,
+  seed: number
 ): string {
   const state = serializeState(board);
   let lines: string[] = [];
   lines.push("<!-- interactive game -->");
   lines.push(`<!-- state: ${state} -->`);
   lines.push(`<!-- moves: ${moves} -->`);
+  lines.push(`<!-- seed: ${seed} -->`);
   lines.push("");
   lines.push(`**Squash the bugs!**`);
   lines.push("");
@@ -92,7 +105,7 @@ export function renderGameSection(
     for (let r = 0; r < BOARD_SIZE; r++) {
       const cells = [];
       for (let c = 0; c < BOARD_SIZE; c++) {
-        const bug = BUG_EMOJIS[(r * BOARD_SIZE + c) % BUG_EMOJIS.length];
+        const bug = bugForCell(seed, r, c);
         const emoji = board[r][c] === 1 ? bug : "⬛";
         cells.push(`<a href="${functionUrl}/?r=${r}&c=${c}">${emoji}</a>`);
       }
@@ -142,21 +155,24 @@ async function processRequest(
   // Parse state
   const stateMatch = readmeContent.match(/<!-- state: ([\d-]+) -->/);
   const movesMatch = readmeContent.match(/<!-- moves: (\d+) -->/);
+  const seedMatch = readmeContent.match(/<!-- seed: (\d+) -->/);
   if (!stateMatch) return null;
 
   let board = parseState(stateMatch[1]);
   let moves = movesMatch ? parseInt(movesMatch[1], 10) : 0;
+  let seed = seedMatch ? parseInt(seedMatch[1], 10) : generateSeed();
 
   if (action === "new") {
     board = generateSolvableBoard(numMoves);
     moves = 0;
+    seed = generateSeed();
   } else if (r !== null && c !== null) {
     board = applyMove(board, r, c);
     moves++;
   }
 
   const won = action !== "new" && isWin(board);
-  const newSection = renderGameSection(board, moves, won, functionUrl);
+  const newSection = renderGameSection(board, moves, won, functionUrl, seed);
 
   const updatedContent = readmeContent.replace(
     /<!-- interactive game -->[\s\S]*?<!-- \/interactive game -->/,

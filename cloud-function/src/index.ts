@@ -71,17 +71,17 @@ function renderGameSection(
     lines.push("");
     lines.push(`[🆕 New Game](${functionUrl}/?action=new)`);
   } else {
-    lines.push("| | 1 | 2 | 3 | 4 | 5 |");
-    lines.push("|---|---|---|---|---|---|");
-    const rowLabels = ["A", "B", "C", "D", "E"];
+    lines.push("<p>");
     for (let r = 0; r < BOARD_SIZE; r++) {
       const cells = [];
       for (let c = 0; c < BOARD_SIZE; c++) {
         const emoji = board[r][c] === 1 ? "🟡" : "⚫";
-        cells.push(`[${emoji}](${functionUrl}/?r=${r}&c=${c})`);
+        cells.push(`<a href="${functionUrl}/?r=${r}&c=${c}">${emoji}</a>`);
       }
-      lines.push(`| **${rowLabels[r]}** | ${cells.join(" | ")} |`);
+      const suffix = r < BOARD_SIZE - 1 ? "<br>" : "";
+      lines.push(cells.join(" ") + suffix);
     }
+    lines.push("</p>");
     lines.push("");
     lines.push(
       `**Moves: ${moves}** | [🔄 Reset](${functionUrl}/?action=reset) | [🆕 New Game](${functionUrl}/?action=new)`

@@ -1,3 +1,17 @@
+<!-- interactive game -->
+<!-- state: 10011-01000-10101-01010-00100 -->
+<!-- moves: 1 -->
+<p>
+<a href="https://FUNCTION_URL/?r=0&c=0">🟡</a> <a href="https://FUNCTION_URL/?r=0&c=1">⚫</a> <a href="https://FUNCTION_URL/?r=0&c=2">⚫</a> <a href="https://FUNCTION_URL/?r=0&c=3">🟡</a> <a href="https://FUNCTION_URL/?r=0&c=4">🟡</a><br>
+<a href="https://FUNCTION_URL/?r=1&c=0">⚫</a> <a href="https://FUNCTION_URL/?r=1&c=1">🟡</a> <a href="https://FUNCTION_URL/?r=1&c=2">⚫</a> <a href="https://FUNCTION_URL/?r=1&c=3">⚫</a> <a href="https://FUNCTION_URL/?r=1&c=4">⚫</a><br>
+<a href="https://FUNCTION_URL/?r=2&c=0">🟡</a> <a href="https://FUNCTION_URL/?r=2&c=1">⚫</a> <a href="https://FUNCTION_URL/?r=2&c=2">🟡</a> <a href="https://FUNCTION_URL/?r=2&c=3">⚫</a> <a href="https://FUNCTION_URL/?r=2&c=4">🟡</a><br>
+<a href="https://FUNCTION_URL/?r=3&c=0">⚫</a> <a href="https://FUNCTION_URL/?r=3&c=1">🟡</a> <a href="https://FUNCTION_URL/?r=3&c=2">⚫</a> <a href="https://FUNCTION_URL/?r=3&c=3">🟡</a> <a href="https://FUNCTION_URL/?r=3&c=4">⚫</a><br>
+<a href="https://FUNCTION_URL/?r=4&c=0">⚫</a> <a href="https://FUNCTION_URL/?r=4&c=1">⚫</a> <a href="https://FUNCTION_URL/?r=4&c=2">🟡</a> <a href="https://FUNCTION_URL/?r=4&c=3">⚫</a> <a href="https://FUNCTION_URL/?r=4&c=4">⚫</a>
+</p>
+
+**Moves: 1** | [🔄 Reset](https://FUNCTION_URL/?action=reset) | [🆕 New Game](https://FUNCTION_URL/?action=new)
+<!-- /interactive game -->
+
 # 💻 Hi there
 
 I'm a Principal Backend software engineer at National Bank of Canada, based in Montreal.
@@ -23,18 +37,3 @@ Certified AWS Solution Architect.
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://linkedin.com/in/gevrai-jt)
 [![Itch.io](https://img.shields.io/badge/Itch-%23FF0B34.svg?style=flat&logo=Itch.io&logoColor=white)](https://gejo.itch.io/)
 [![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=flat&logo=github&logoColor=white)](https://github.com/Gevrai)
-
-
-<!-- interactive game -->
-<!-- state: 10011-01000-10101-01010-00100 -->
-<!-- moves: 1 -->
-| | 1 | 2 | 3 | 4 | 5 |
-|---|---|---|---|---|---|
-| **A** | [🟡](https://lights-out-5c4srghjdq-ue.a.run.app/?r=0&c=0) | [⚫](https://lights-out-5c4srghjdq-ue.a.run.app/?r=0&c=1) | [⚫](https://lights-out-5c4srghjdq-ue.a.run.app/?r=0&c=2) | [🟡](https://lights-out-5c4srghjdq-ue.a.run.app/?r=0&c=3) | [🟡](https://lights-out-5c4srghjdq-ue.a.run.app/?r=0&c=4) |
-| **B** | [⚫](https://lights-out-5c4srghjdq-ue.a.run.app/?r=1&c=0) | [🟡](https://lights-out-5c4srghjdq-ue.a.run.app/?r=1&c=1) | [⚫](https://lights-out-5c4srghjdq-ue.a.run.app/?r=1&c=2) | [⚫](https://lights-out-5c4srghjdq-ue.a.run.app/?r=1&c=3) | [⚫](https://lights-out-5c4srghjdq-ue.a.run.app/?r=1&c=4) |
-| **C** | [🟡](https://lights-out-5c4srghjdq-ue.a.run.app/?r=2&c=0) | [⚫](https://lights-out-5c4srghjdq-ue.a.run.app/?r=2&c=1) | [🟡](https://lights-out-5c4srghjdq-ue.a.run.app/?r=2&c=2) | [⚫](https://lights-out-5c4srghjdq-ue.a.run.app/?r=2&c=3) | [🟡](https://lights-out-5c4srghjdq-ue.a.run.app/?r=2&c=4) |
-| **D** | [⚫](https://lights-out-5c4srghjdq-ue.a.run.app/?r=3&c=0) | [🟡](https://lights-out-5c4srghjdq-ue.a.run.app/?r=3&c=1) | [⚫](https://lights-out-5c4srghjdq-ue.a.run.app/?r=3&c=2) | [🟡](https://lights-out-5c4srghjdq-ue.a.run.app/?r=3&c=3) | [⚫](https://lights-out-5c4srghjdq-ue.a.run.app/?r=3&c=4) |
-| **E** | [⚫](https://lights-out-5c4srghjdq-ue.a.run.app/?r=4&c=0) | [⚫](https://lights-out-5c4srghjdq-ue.a.run.app/?r=4&c=1) | [🟡](https://lights-out-5c4srghjdq-ue.a.run.app/?r=4&c=2) | [⚫](https://lights-out-5c4srghjdq-ue.a.run.app/?r=4&c=3) | [⚫](https://lights-out-5c4srghjdq-ue.a.run.app/?r=4&c=4) |
-
-**Moves: 1** | [🔄 Reset](https://lights-out-5c4srghjdq-ue.a.run.app/?action=reset) | [🆕 New Game](https://lights-out-5c4srghjdq-ue.a.run.app/?action=new)
-<!-- /interactive game -->

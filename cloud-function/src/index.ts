@@ -40,25 +40,46 @@ export function isWin(board: Board): boolean {
 }
 
 const NUM_CELLS = BOARD_SIZE * BOARD_SIZE;
-const BUG_EMOJIS = ["🐛", "🪲", "🦗", "🪳", "🐜"];
+const BUG_EMOJIS = ["🐛", "🪲", "🦗", "🪳", "🐜"]
 
-export function generateSeed(): number {
-  return Math.floor(Math.random() * 0xffff);
+export function sanitizeSeed(raw: string): string {
+  return raw.replace(/ /g, "_").replace(/[^a-zA-Z_-]/g, "").slice(0, 100);
 }
 
-function bugForCell(seed: number, r: number, c: number): string {
-  // Simple hash to deterministically pick a bug emoji per cell per game
-  let h = seed ^ (r * 7 + c * 13);
-  h = ((h >>> 0) * 2654435761) >>> 0;
-  return BUG_EMOJIS[h % BUG_EMOJIS.length];
+export function generateSeed(): string {
+  return Math.floor(Math.random() * 0xffff).toString(16);
 }
 
-export function generateSolvableBoard(numMoves: number): Board {
+function hashSeed(seed: string): number {
+  let h = 0;
+  for (let i = 0; i < seed.length; i++) {
+    h = ((h << 5) - h + seed.charCodeAt(i)) | 0;
+  }
+  return h;
+}
+
+// Simple seeded PRNG (mulberry32)
+function seededRng(seed: number): () => number {
+  let s = seed | 0;
+  return () => {
+    s = (s + 0x6d2b79f5) | 0;
+    let t = Math.imul(s ^ (s >>> 15), 1 | s);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+function bugForCell(seed: string, r: number, c: number): string {
+  const rng = seededRng(hashSeed(seed) + r * BOARD_SIZE + c);
+  return BUG_EMOJIS[Math.floor(rng() * BUG_EMOJIS.length)];
+}
+
+export function generateSolvableBoard(numMoves: number, seed: string): Board {
+  const rng = seededRng(hashSeed(seed));
   let board: Board = Array.from({ length: BOARD_SIZE }, () =>
     Array(BOARD_SIZE).fill(0)
   );
   numMoves = Math.max(2, Math.min(numMoves, NUM_CELLS));
-  // Build a shuffled list of all cells so each is picked at most once
   const allCells: [number, number][] = [];
   for (let r = 0; r < BOARD_SIZE; r++) {
     for (let c = 0; c < BOARD_SIZE; c++) {
@@ -66,13 +87,12 @@ export function generateSolvableBoard(numMoves: number): Board {
     }
   }
   for (let i = allCells.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
+    const j = Math.floor(rng() * (i + 1));
     [allCells[i], allCells[j]] = [allCells[j], allCells[i]];
   }
   for (let i = 0; i < numMoves; i++) {
     board = applyMove(board, allCells[i][0], allCells[i][1]);
   }
-  // Ensure it's not already solved
   if (isWin(board)) {
     board = applyMove(board, 2, 2);
   }
@@ -84,7 +104,8 @@ export function renderGameSection(
   moves: number,
   won: boolean,
   functionUrl: string,
-  seed: number
+  seed: string,
+  numMoves: number
 ): string {
   const state = serializeState(board);
   let lines: string[] = [];
@@ -92,6 +113,7 @@ export function renderGameSection(
   lines.push(`<!-- state: ${state} -->`);
   lines.push(`<!-- moves: ${moves} -->`);
   lines.push(`<!-- seed: ${seed} -->`);
+  lines.push(`<!-- num_moves: ${numMoves} -->`);
   lines.push("");
   lines.push(`**Squash the bugs!**`);
   lines.push("");
@@ -115,15 +137,16 @@ export function renderGameSection(
     lines.push("</p>");
     lines.push("");
     lines.push(`**Commits: ${moves}** </br>`);
+    lines.push(`[🔄 \`reset --hard main\`](${functionUrl}/?action=reset)`);
   }
 
   lines.push("");
   lines.push(`Commit bugfixes by clicking on squares, but each commit toggles the bug and its neighbors in the codebase!`);
   lines.push("");
 
-  lines.push(`New codebase:`);
-  lines.push(`- [🌱 Greenfield project](${functionUrl}/?action=new&num_moves=4)`);
-  lines.push(`- [🏢 Day job](${functionUrl}/?action=new&num_moves=8)`);
+  lines.push(`Fix another codebase:`);
+  lines.push(`- [🌱 Greenfield project](${functionUrl}/?action=new&num_moves=3)`);
+  lines.push(`- [🏢 Day job](${functionUrl}/?action=new&num_moves=7)`);
   lines.push(`- [🏚️ Legacy codebase](${functionUrl}/?action=new&num_moves=15)`);
 
   lines.push("<!-- /interactive game -->");
@@ -136,8 +159,9 @@ async function processRequest(
   c: number | null,
   action: string | null,
   numMoves: number,
+  inputSeed: string | null,
   functionUrl: string
-): Promise<{ content: string; sha: string } | null> {
+): Promise<{ content: string; sha: string; seed: string } | null> {
   // Fetch current README
   const { data } = await octokit.repos.getContent({
     owner: OWNER,
@@ -155,31 +179,37 @@ async function processRequest(
   // Parse state
   const stateMatch = readmeContent.match(/<!-- state: ([\d-]+) -->/);
   const movesMatch = readmeContent.match(/<!-- moves: (\d+) -->/);
-  const seedMatch = readmeContent.match(/<!-- seed: (\d+) -->/);
+  const seedMatch = readmeContent.match(/<!-- seed: ([a-zA-Z0-9_-]+) -->/);
+  const numMovesMatch = readmeContent.match(/<!-- num_moves: (\d+) -->/);
   if (!stateMatch) return null;
 
   let board = parseState(stateMatch[1]);
   let moves = movesMatch ? parseInt(movesMatch[1], 10) : 0;
-  let seed = seedMatch ? parseInt(seedMatch[1], 10) : generateSeed();
+  let seed = seedMatch ? seedMatch[1] : generateSeed();
+  let storedNumMoves = numMovesMatch ? parseInt(numMovesMatch[1], 10) : numMoves;
 
   if (action === "new") {
-    board = generateSolvableBoard(numMoves);
+    seed = inputSeed || generateSeed();
+    board = generateSolvableBoard(numMoves, seed);
+    storedNumMoves = numMoves;
     moves = 0;
-    seed = generateSeed();
+  } else if (action === "reset") {
+    board = generateSolvableBoard(storedNumMoves, seed);
+    moves = 0;
   } else if (r !== null && c !== null) {
     board = applyMove(board, r, c);
     moves++;
   }
 
-  const won = action !== "new" && isWin(board);
-  const newSection = renderGameSection(board, moves, won, functionUrl, seed);
+  const won = action !== "new" && action !== "reset" && isWin(board);
+  const newSection = renderGameSection(board, moves, won, functionUrl, seed, storedNumMoves);
 
   const updatedContent = readmeContent.replace(
     /<!-- interactive game -->[\s\S]*?<!-- \/interactive game -->/,
     newSection
   );
 
-  return { content: updatedContent, sha };
+  return { content: updatedContent, sha, seed };
 }
 
 ff.http("lightsOut", async (req, res) => {
@@ -193,9 +223,11 @@ ff.http("lightsOut", async (req, res) => {
   const rParam = req.query.r as string | undefined;
   const cParam = req.query.c as string | undefined;
   const rawAction = (req.query.action as string | undefined) || null;
-  const action = rawAction === "new" ? "new" : null;
+  const action = rawAction === "new" ? "new" : rawAction === "reset" ? "reset" : null;
   const rawNumMoves = req.query.num_moves as string | undefined;
   const numMoves = rawNumMoves ? parseInt(rawNumMoves, 10) : 8;
+  const rawSeed = (req.query.seed as string | undefined) || null;
+  const inputSeed = rawSeed ? sanitizeSeed(rawSeed) || null : null;
 
   const r = rParam !== undefined ? parseInt(rParam, 10) : null;
   const c = cParam !== undefined ? parseInt(cParam, 10) : null;
@@ -217,7 +249,7 @@ ff.http("lightsOut", async (req, res) => {
   // Try up to 2 times (retry once on SHA conflict)
   for (let attempt = 0; attempt < 2; attempt++) {
     try {
-      const result = await processRequest(octokit, r, c, action, numMoves, FUNCTION_URL);
+      const result = await processRequest(octokit, r, c, action, numMoves, inputSeed, FUNCTION_URL);
       if (!result) {
         res.status(500).send("Failed to parse README");
         return;
@@ -227,9 +259,11 @@ ff.http("lightsOut", async (req, res) => {
         owner: OWNER,
         repo: REPO,
         path: "README.md",
-        message: action
-          ? `game: new codebase`
-          : `game: squash bug (${r},${c})`,
+        message: action === "new"
+          ? `game: new game`
+          : action === "reset"
+          ? `game: reset seed ${result.seed}`
+          : `game: move (${r},${c})`,
         content: Buffer.from(result.content).toString("base64"),
         sha: result.sha,
       });

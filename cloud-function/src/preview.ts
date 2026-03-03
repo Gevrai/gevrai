@@ -20,18 +20,24 @@ const readme = fs.readFileSync(README_PATH, "utf-8");
 const stateMatch = readme.match(/<!-- state: ([\d-]+) -->/);
 const movesMatch = readme.match(/<!-- moves: (\d+) -->/);
 
-const seedMatch = readme.match(/<!-- seed: (\d+) -->/);
+const seedMatch = readme.match(/<!-- seed: ([a-zA-Z0-9_-]+) -->/);
+const numMovesMatch = readme.match(/<!-- num_moves: (\d+) -->/);
 
-let board = stateMatch ? parseState(stateMatch[1]) : generateSolvableBoard(8);
+let seed = seedMatch ? seedMatch[1] : generateSeed();
+let numMoves = numMovesMatch ? parseInt(numMovesMatch[1], 10) : 8;
+let board = stateMatch ? parseState(stateMatch[1]) : generateSolvableBoard(8, seed);
 let moves = movesMatch ? parseInt(movesMatch[1], 10) : 0;
-let seed = seedMatch ? parseInt(seedMatch[1], 10) : generateSeed();
 
 if (action === "new") {
-  const numMoves = parseInt(args[1] || "8", 10);
-  board = generateSolvableBoard(numMoves);
-  moves = 0;
+  numMoves = parseInt(args[1] || "8", 10);
   seed = generateSeed();
+  board = generateSolvableBoard(numMoves, seed);
+  moves = 0;
   console.log(`New game with ${numMoves} moves`);
+} else if (action === "reset") {
+  board = generateSolvableBoard(numMoves, seed);
+  moves = 0;
+  console.log(`Reset to initial state`);
 } else if (action === "move") {
   const r = parseInt(args[1], 10);
   const c = parseInt(args[2], 10);
@@ -40,8 +46,8 @@ if (action === "new") {
   console.log(`Move (${r},${c}) — commits: ${moves}`);
 }
 
-const won = action !== "new" && isWin(board);
-const section = renderGameSection(board, moves, won, FUNCTION_URL, seed);
+const won = action !== "new" && action !== "reset" && isWin(board);
+const section = renderGameSection(board, moves, won, FUNCTION_URL, seed, numMoves);
 
 const updated = readme.replace(
   /<!-- interactive game -->[\s\S]*?<!-- \/interactive game -->/,

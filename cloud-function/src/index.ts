@@ -4,6 +4,7 @@ import { Octokit } from "@octokit/rest";
 const BOARD_SIZE = 5;
 const OWNER = process.env.GITHUB_OWNER!;
 const REPO = process.env.GITHUB_REPO!;
+const FUNCTION_URL = process.env.FUNCTION_URL!;
 
 type Board = number[][];
 
@@ -84,7 +85,6 @@ function renderGameSection(
     lines.push("</p>");
     lines.push("");
     lines.push(`**Moves: ${moves}** </br>`);
-    lines.push(`[🔄 Reset](${functionUrl}/?action=reset) </br>`);
     lines.push(`[🆕 New Game](${functionUrl}/?action=new)`);
   }
 
@@ -124,17 +124,12 @@ async function processRequest(
   if (action === "new") {
     board = generateSolvableBoard();
     moves = 0;
-  } else if (action === "reset") {
-    board = Array.from({ length: BOARD_SIZE }, () =>
-      Array(BOARD_SIZE).fill(0)
-    );
-    moves = 0;
   } else if (r !== null && c !== null) {
     board = applyMove(board, r, c);
     moves++;
   }
 
-  const won = action !== "reset" && isWin(board);
+  const won = action !== "new" && isWin(board);
   const newSection = renderGameSection(board, moves, won, functionUrl);
 
   const updatedContent = readmeContent.replace(
@@ -146,8 +141,8 @@ async function processRequest(
 }
 
 ff.http("lightsOut", async (req, res) => {
-  if (!process.env.GITHUB_TOKEN || !OWNER || !REPO) {
-    res.status(500).send("Missing required env vars: GITHUB_TOKEN, GITHUB_OWNER, GITHUB_REPO");
+  if (!process.env.GITHUB_TOKEN || !OWNER || !REPO || !FUNCTION_URL) {
+    res.status(500).send("Missing required env vars");
     return;
   }
 
@@ -155,7 +150,8 @@ ff.http("lightsOut", async (req, res) => {
 
   const rParam = req.query.r as string | undefined;
   const cParam = req.query.c as string | undefined;
-  const action = (req.query.action as string | undefined) || null;
+  const rawAction = (req.query.action as string | undefined) || null;
+  const action = rawAction === "new" ? "new" : null;
 
   const r = rParam !== undefined ? parseInt(rParam, 10) : null;
   const c = cParam !== undefined ? parseInt(cParam, 10) : null;
@@ -177,8 +173,7 @@ ff.http("lightsOut", async (req, res) => {
   // Try up to 2 times (retry once on SHA conflict)
   for (let attempt = 0; attempt < 2; attempt++) {
     try {
-      const functionUrl = `${req.protocol}://${req.get("host")}`;
-      const result = await processRequest(octokit, r, c, action, functionUrl);
+      const result = await processRequest(octokit, r, c, action, FUNCTION_URL);
       if (!result) {
         res.status(500).send("Failed to parse README");
         return;
@@ -205,7 +200,9 @@ ff.http("lightsOut", async (req, res) => {
         res.redirect(302, `https://github.com/${OWNER}`);
         return;
       }
-      throw err;
+      console.error("Unexpected error:", err);
+      res.status(500).send("Something went wrong");
+      return;
     }
   }
 });

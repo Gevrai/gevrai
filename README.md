@@ -1,29 +1,7 @@
 ### 💻 Hi there
 
-<table><tr><td valign="top" width="130">
+<table><tr><td valign="top">
 
-**Lights Out Game!**
-
-
-<!-- interactive game -->
-<!-- state: 10110-00001-00101-00100-00011 -->
-<!-- moves: 8 -->
-<p>
-<a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=0&c=0">🟡</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=0&c=1">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=0&c=2">🟡</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=0&c=3">🟡</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=0&c=4">⚫</a><br>
-<a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=1&c=0">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=1&c=1">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=1&c=2">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=1&c=3">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=1&c=4">🟡</a><br>
-<a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=2&c=0">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=2&c=1">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=2&c=2">🟡</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=2&c=3">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=2&c=4">🟡</a><br>
-<a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=3&c=0">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=3&c=1">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=3&c=2">🟡</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=3&c=3">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=3&c=4">⚫</a><br>
-<a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=4&c=0">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=4&c=1">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=4&c=2">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=4&c=3">🟡</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=4&c=4">🟡</a>
-</p>
-
-**Moves: 8** </br>
-[🔄 Reset](https://lights-out-5c4srghjdq-ue.a.run.app/?action=reset) </br>
-[🆕 New Game](https://lights-out-5c4srghjdq-ue.a.run.app/?action=new)
-<!-- /interactive game -->
-
-Click ⚫ to toggle the light and its neighbors. Turn off all the lights to win!
-
-</td><td valign="top">
 
 I'm a Principal Backend software engineer at National Bank of Canada, based in Montreal.
 Working mainly on backend golang REST and Kafka microservices in card and transaction processing teams.
@@ -45,5 +23,27 @@ Certified AWS Solution Architect.
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://linkedin.com/in/gevrai-jt)
 [![Itch.io](https://img.shields.io/badge/Itch-%23FF0B34.svg?style=flat&logo=Itch.io&logoColor=white)](https://gejo.itch.io/)
 [![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=flat&logo=github&logoColor=white)](https://github.com/Gevrai)
+
+</td><td valign="top" width="200">
+
+**Lights Out Game!**
+
+<!-- interactive game -->
+<!-- state: 10110-00001-00101-00100-00011 -->
+<!-- moves: 8 -->
+<p>
+<a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=0&c=0">🟡</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=0&c=1">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=0&c=2">🟡</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=0&c=3">🟡</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=0&c=4">⚫</a><br>
+<a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=1&c=0">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=1&c=1">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=1&c=2">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=1&c=3">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=1&c=4">🟡</a><br>
+<a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=2&c=0">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=2&c=1">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=2&c=2">🟡</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=2&c=3">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=2&c=4">🟡</a><br>
+<a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=3&c=0">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=3&c=1">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=3&c=2">🟡</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=3&c=3">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=3&c=4">⚫</a><br>
+<a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=4&c=0">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=4&c=1">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=4&c=2">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=4&c=3">🟡</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=4&c=4">🟡</a>
+</p>
+
+**Moves: 8** </br>
+[🆕 New Game](https://lights-out-5c4srghjdq-ue.a.run.app/?action=new)
+<!-- /interactive game -->
+
+Turn off all the 🟡 to win!
+Click on one to toggle it and its neighbors.
 
 </td></tr></table>

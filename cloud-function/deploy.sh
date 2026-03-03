@@ -68,12 +68,20 @@ gcloud functions deploy "$FUNCTION_NAME" \
   --entry-point=lightsOut \
   --source=. \
   --set-secrets="GITHUB_TOKEN=${SECRET_NAME}:latest" \
-  --set-env-vars="GITHUB_OWNER=${GITHUB_OWNER},GITHUB_REPO=${GITHUB_REPO}" \
+  --set-env-vars="GITHUB_OWNER=${GITHUB_OWNER},GITHUB_REPO=${GITHUB_REPO},FUNCTION_URL=${FUNCTION_URL:-placeholder}" \
   --memory=256MB \
   --max-instances=1 \
   --concurrency=1
 
 FUNCTION_URL=$(gcloud functions describe "$FUNCTION_NAME" --gen2 --region="$REGION" --format='value(serviceConfig.uri)')
+
+# Update FUNCTION_URL env var now that we know the URL
+echo "==> Setting FUNCTION_URL=${FUNCTION_URL}..."
+gcloud functions deploy "$FUNCTION_NAME" \
+  --gen2 \
+  --region="$REGION" \
+  --update-env-vars="FUNCTION_URL=${FUNCTION_URL}" \
+  --quiet
 
 echo ""
 echo "==> Deployed successfully!"

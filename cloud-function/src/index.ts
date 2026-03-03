@@ -138,11 +138,10 @@ export function renderGameSection(
     lines.push("");
     lines.push(`**Commits: ${moves}** </br>`);
     lines.push(`[🔄 \`reset --hard main\`](${functionUrl}/?action=reset)`);
+    lines.push("");
+    lines.push(`Commit bugfixes by clicking on squares, but each commit toggles the bug and its neighbors in the codebase!`);
+    lines.push("");
   }
-
-  lines.push("");
-  lines.push(`Commit bugfixes by clicking on squares, but each commit toggles the bug and its neighbors in the codebase!`);
-  lines.push("");
 
   lines.push(`Fix another codebase:`);
   lines.push(`- [🌱 Greenfield project](${functionUrl}/?action=new&num_moves=3)`);

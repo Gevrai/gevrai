@@ -25,25 +25,28 @@ Certified AWS Solution Architect.
 [![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=flat&logo=github&logoColor=white)](https://github.com/Gevrai)
 
 </td><td valign="top" width="200">
-
-**Lights Out Game!**
-
 <!-- interactive game -->
-<!-- state: 11011-10100-00111-11110-01010 -->
+<!-- state: 01110-01100-01111-11010-00001 -->
 <!-- moves: 0 -->
+**Squash the bugs!**
+
 <p>
-<a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=0&c=0">🟡</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=0&c=1">🟡</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=0&c=2">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=0&c=3">🟡</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=0&c=4">🟡</a><br>
-<a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=1&c=0">🟡</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=1&c=1">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=1&c=2">🟡</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=1&c=3">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=1&c=4">⚫</a><br>
-<a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=2&c=0">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=2&c=1">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=2&c=2">🟡</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=2&c=3">🟡</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=2&c=4">🟡</a><br>
-<a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=3&c=0">🟡</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=3&c=1">🟡</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=3&c=2">🟡</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=3&c=3">🟡</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=3&c=4">⚫</a><br>
-<a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=4&c=0">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=4&c=1">🟡</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=4&c=2">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=4&c=3">🟡</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=4&c=4">⚫</a>
+<a href="https://example.com/?r=0&c=0">⬛</a> <a href="https://example.com/?r=0&c=1">🪲</a> <a href="https://example.com/?r=0&c=2">🦗</a> <a href="https://example.com/?r=0&c=3">🪳</a> <a href="https://example.com/?r=0&c=4">⬛</a><br>
+<a href="https://example.com/?r=1&c=0">⬛</a> <a href="https://example.com/?r=1&c=1">🪲</a> <a href="https://example.com/?r=1&c=2">🦗</a> <a href="https://example.com/?r=1&c=3">⬛</a> <a href="https://example.com/?r=1&c=4">⬛</a><br>
+<a href="https://example.com/?r=2&c=0">⬛</a> <a href="https://example.com/?r=2&c=1">🪲</a> <a href="https://example.com/?r=2&c=2">🦗</a> <a href="https://example.com/?r=2&c=3">🪳</a> <a href="https://example.com/?r=2&c=4">🐜</a><br>
+<a href="https://example.com/?r=3&c=0">🐛</a> <a href="https://example.com/?r=3&c=1">🪲</a> <a href="https://example.com/?r=3&c=2">⬛</a> <a href="https://example.com/?r=3&c=3">🪳</a> <a href="https://example.com/?r=3&c=4">⬛</a><br>
+<a href="https://example.com/?r=4&c=0">⬛</a> <a href="https://example.com/?r=4&c=1">⬛</a> <a href="https://example.com/?r=4&c=2">⬛</a> <a href="https://example.com/?r=4&c=3">⬛</a> <a href="https://example.com/?r=4&c=4">🐜</a>
 </p>
 
-**Moves: 0** </br>
-[🆕 New Game](https://lights-out-5c4srghjdq-ue.a.run.app/?action=new)
-<!-- /interactive game -->
+**Commits: 0** </br>
 
-Turn off all the 🟡 to win!
-Click on one to toggle it and its neighbors.
+Commit bugfixes by clicking on squares, but each commit toggles the bug and its neighbors in the codebase!
+Squash all the bugs in the fewest commits.
+
+New codebase:
+- [🌱 Greenfield project](https://example.com/?action=new&num_moves=4)
+- [🏢 Day job](https://example.com/?action=new&num_moves=8)
+- [🏚️ Legacy codebase](https://example.com/?action=new&num_moves=15)
+<!-- /interactive game -->
 
 </td></tr></table>

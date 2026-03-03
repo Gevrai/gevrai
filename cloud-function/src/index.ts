@@ -8,9 +8,9 @@ const FUNCTION_URL = process.env.FUNCTION_URL!;
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-type Board = number[][];
+export type Board = number[][];
 
-function parseState(stateStr: string): Board {
+export function parseState(stateStr: string): Board {
   return stateStr.split("-").map((row) => row.split("").map(Number));
 }
 
@@ -18,7 +18,7 @@ function serializeState(board: Board): string {
   return board.map((row) => row.join("")).join("-");
 }
 
-function applyMove(board: Board, r: number, c: number): Board {
+export function applyMove(board: Board, r: number, c: number): Board {
   const b = board.map((row) => [...row]);
   const targets = [
     [r, c],
@@ -35,13 +35,14 @@ function applyMove(board: Board, r: number, c: number): Board {
   return b;
 }
 
-function isWin(board: Board): boolean {
+export function isWin(board: Board): boolean {
   return board.every((row) => row.every((cell) => cell === 0));
 }
 
 const NUM_CELLS = BOARD_SIZE * BOARD_SIZE;
+const BUG_EMOJIS = ["🐛", "🪲", "🦗", "🪳", "🐜"];
 
-function generateSolvableBoard(numMoves: number): Board {
+export function generateSolvableBoard(numMoves: number): Board {
   let board: Board = Array.from({ length: BOARD_SIZE }, () =>
     Array(BOARD_SIZE).fill(0)
   );
@@ -67,7 +68,7 @@ function generateSolvableBoard(numMoves: number): Board {
   return board;
 }
 
-function renderGameSection(
+export function renderGameSection(
   board: Board,
   moves: number,
   won: boolean,
@@ -78,17 +79,20 @@ function renderGameSection(
   lines.push("<!-- interactive game -->");
   lines.push(`<!-- state: ${state} -->`);
   lines.push(`<!-- moves: ${moves} -->`);
+  lines.push(`**Squash the bugs!**`);
+  lines.push("");
 
   if (won) {
     lines.push("");
-    lines.push(`### 🎉 You solved it in ${moves} moves!`);
+    lines.push(`### 🎉 All bugs squashed in ${moves} commits!`);
     lines.push("");
   } else {
     lines.push("<p>");
     for (let r = 0; r < BOARD_SIZE; r++) {
       const cells = [];
       for (let c = 0; c < BOARD_SIZE; c++) {
-        const emoji = board[r][c] === 1 ? "🟡" : "⚫";
+        const bug = BUG_EMOJIS[(r * BOARD_SIZE + c) % BUG_EMOJIS.length];
+        const emoji = board[r][c] === 1 ? bug : "⬛";
         cells.push(`<a href="${functionUrl}/?r=${r}&c=${c}">${emoji}</a>`);
       }
       const suffix = r < BOARD_SIZE - 1 ? "<br>" : "";
@@ -96,13 +100,18 @@ function renderGameSection(
     }
     lines.push("</p>");
     lines.push("");
-    lines.push(`**Moves: ${moves}** </br>`);
+    lines.push(`**Commits: ${moves}** </br>`);
   }
 
-  lines.push(`New game:`);
-  lines.push(`-[🟢 Easy](${functionUrl}/?action=new&num_moves=4)`);
-  lines.push(`-[🟡 Medium](${functionUrl}/?action=new&num_moves=8)`);
-  lines.push(`-[🔴 Hard](${functionUrl}/?action=new&num_moves=15)`);
+  lines.push("");
+  lines.push(`Commit bugfixes by clicking on squares, but each commit toggles the bug and its neighbors in the codebase!`);
+  lines.push(`Squash all the bugs in the fewest commits.`);
+  lines.push("");
+
+  lines.push(`New codebase:`);
+  lines.push(`- [🌱 Greenfield project](${functionUrl}/?action=new&num_moves=4)`);
+  lines.push(`- [🏢 Day job](${functionUrl}/?action=new&num_moves=8)`);
+  lines.push(`- [🏚️ Legacy codebase](${functionUrl}/?action=new&num_moves=15)`);
 
   lines.push("<!-- /interactive game -->");
   return lines.join("\n");
@@ -203,8 +212,8 @@ ff.http("lightsOut", async (req, res) => {
         repo: REPO,
         path: "README.md",
         message: action
-          ? `game: ${action}`
-          : `game: move (${r},${c})`,
+          ? `game: new codebase`
+          : `game: squash bug (${r},${c})`,
         content: Buffer.from(result.content).toString("base64"),
         sha: result.sha,
       });

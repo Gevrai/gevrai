@@ -4,7 +4,8 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "start": "npx functions-framework --target=lightsOut"
+    "start": "npx functions-framework --target=lightsOut",
+    "preview": "tsc && node dist/preview.js"
   },
   "dependencies": {
     "@google-cloud/functions-framework": "^3.3.0",

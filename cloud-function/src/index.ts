@@ -6,6 +6,8 @@ const OWNER = process.env.GITHUB_OWNER!;
 const REPO = process.env.GITHUB_REPO!;
 const FUNCTION_URL = process.env.FUNCTION_URL!;
 
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
 type Board = number[][];
 
 function parseState(stateStr: string): Board {
@@ -190,6 +192,7 @@ ff.http("lightsOut", async (req, res) => {
         sha: result.sha,
       });
 
+      await sleep(1000); // Wait a moment for GitHub to reflect the change
       res.redirect(302, `https://github.com/${OWNER}`);
       return;
     } catch (err: any) {
@@ -197,6 +200,7 @@ ff.http("lightsOut", async (req, res) => {
         continue; // Retry on SHA conflict
       }
       if (attempt === 1 && err.status === 409) {
+        await sleep(1000); // Wait a moment for GitHub to reflect the change
         res.redirect(302, `https://github.com/${OWNER}`);
         return;
       }

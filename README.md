@@ -1,15 +1,15 @@
 <!-- interactive game -->
-<!-- state: 10001-01111-10111-01010-00100 -->
-<!-- moves: 2 -->
+<!-- state: 10001-01101-10000-01000-00100 -->
+<!-- moves: 3 -->
 <p>
 <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=0&c=0">🟡</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=0&c=1">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=0&c=2">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=0&c=3">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=0&c=4">🟡</a><br>
-<a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=1&c=0">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=1&c=1">🟡</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=1&c=2">🟡</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=1&c=3">🟡</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=1&c=4">🟡</a><br>
-<a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=2&c=0">🟡</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=2&c=1">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=2&c=2">🟡</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=2&c=3">🟡</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=2&c=4">🟡</a><br>
-<a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=3&c=0">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=3&c=1">🟡</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=3&c=2">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=3&c=3">🟡</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=3&c=4">⚫</a><br>
+<a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=1&c=0">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=1&c=1">🟡</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=1&c=2">🟡</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=1&c=3">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=1&c=4">🟡</a><br>
+<a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=2&c=0">🟡</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=2&c=1">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=2&c=2">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=2&c=3">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=2&c=4">⚫</a><br>
+<a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=3&c=0">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=3&c=1">🟡</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=3&c=2">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=3&c=3">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=3&c=4">⚫</a><br>
 <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=4&c=0">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=4&c=1">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=4&c=2">🟡</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=4&c=3">⚫</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=4&c=4">⚫</a>
 </p>
 
-**Moves: 2** | [🔄 Reset](https://lights-out-5c4srghjdq-ue.a.run.app/?action=reset) | [🆕 New Game](https://lights-out-5c4srghjdq-ue.a.run.app/?action=new)
+**Moves: 3** | [🔄 Reset](https://lights-out-5c4srghjdq-ue.a.run.app/?action=reset) | [🆕 New Game](https://lights-out-5c4srghjdq-ue.a.run.app/?action=new)
 <!-- /interactive game -->
 
 # 💻 Hi there

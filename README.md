@@ -1,6 +1,6 @@
 ### 💻 Hi there
 
-<table><tr><td valign="top" width="120">
+<table><tr><td valign="top" width="130">
 
 **Lights Out Game!**
 

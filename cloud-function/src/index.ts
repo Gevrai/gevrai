@@ -83,9 +83,9 @@ function renderGameSection(
     }
     lines.push("</p>");
     lines.push("");
-    lines.push(
-      `**Moves: ${moves}** | [🔄 Reset](${functionUrl}/?action=reset) | [🆕 New Game](${functionUrl}/?action=new)`
-    );
+    lines.push(`**Moves: ${moves}** </br>`);
+    lines.push(`[🔄 Reset](${functionUrl}/?action=reset) </br>`);
+    lines.push(`[🆕 New Game](${functionUrl}/?action=new)`);
   }
 
   lines.push("<!-- /interactive game -->");

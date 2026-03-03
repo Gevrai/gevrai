@@ -79,6 +79,7 @@ export function renderGameSection(
   lines.push("<!-- interactive game -->");
   lines.push(`<!-- state: ${state} -->`);
   lines.push(`<!-- moves: ${moves} -->`);
+  lines.push("");
   lines.push(`**Squash the bugs!**`);
   lines.push("");
 
@@ -105,7 +106,6 @@ export function renderGameSection(
 
   lines.push("");
   lines.push(`Commit bugfixes by clicking on squares, but each commit toggles the bug and its neighbors in the codebase!`);
-  lines.push(`Squash all the bugs in the fewest commits.`);
   lines.push("");
 
   lines.push(`New codebase:`);

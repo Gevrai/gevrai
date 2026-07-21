@@ -41,22 +41,22 @@ Outside of work, I tinker with AI agents, game dev and web projects.
 
 </td><td valign="top" width="200">
 <!-- interactive game -->
-<!-- state: 00101-11101-10110-01101-01011 -->
-<!-- moves: 1 -->
-<!-- seed: bb22 -->
-<!-- num_moves: 8 -->
+<!-- state: 10000-11000-11000-11110-01111 -->
+<!-- moves: 0 -->
+<!-- seed: 5f62 -->
+<!-- num_moves: 3 -->
 
 **Squash the bugs!**
 
 <p>
-<a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=0&c=0">⬛</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=0&c=1">⬛</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=0&c=2">🦗</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=0&c=3">⬛</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=0&c=4">🐜</a><br>
-<a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=1&c=0">🐜</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=1&c=1">🦗</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=1&c=2">🐜</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=1&c=3">⬛</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=1&c=4">🐜</a><br>
-<a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=2&c=0">🪳</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=2&c=1">⬛</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=2&c=2">🪲</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=2&c=3">🦗</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=2&c=4">⬛</a><br>
-<a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=3&c=0">⬛</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=3&c=1">🐛</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=3&c=2">🦗</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=3&c=3">⬛</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=3&c=4">🦗</a><br>
-<a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=4&c=0">⬛</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=4&c=1">🐜</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=4&c=2">⬛</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=4&c=3">🪲</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=4&c=4">🦗</a>
+<a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=0&c=0">🪳</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=0&c=1">⬛</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=0&c=2">⬛</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=0&c=3">⬛</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=0&c=4">⬛</a><br>
+<a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=1&c=0">🐜</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=1&c=1">🦗</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=1&c=2">⬛</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=1&c=3">⬛</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=1&c=4">⬛</a><br>
+<a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=2&c=0">🪳</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=2&c=1">🐜</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=2&c=2">⬛</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=2&c=3">⬛</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=2&c=4">⬛</a><br>
+<a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=3&c=0">🪳</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=3&c=1">🦗</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=3&c=2">🪲</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=3&c=3">🪲</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=3&c=4">⬛</a><br>
+<a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=4&c=0">⬛</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=4&c=1">🪳</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=4&c=2">🪲</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=4&c=3">🐛</a> <a href="https://lights-out-5c4srghjdq-ue.a.run.app/?r=4&c=4">🐛</a>
 </p>
 
-**Commits: 1** </br>
+**Commits: 0** </br>
 [🔄 `reset --hard main`](https://lights-out-5c4srghjdq-ue.a.run.app/?action=reset)
 
 Commit bugfixes by clicking on squares, but each commit toggles the bug and its neighbors in the codebase!
